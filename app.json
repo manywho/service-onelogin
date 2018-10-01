@@ -1,0 +1,7 @@
+{
+  "name": "Boomi Flow OneLogin Service",
+  "description": "A plugin that allows your Boomi Flows to integrate with OneLogin for authentication",
+  "repository": "https://github.com/manywho/service-onelogin",
+  "logo": "https://s3.amazonaws.com/manywho-service-assets/icons/service-onelogin.png",
+  "keywords": ["manywho", "boomi", "onelogin", "authentication", "plugin", "workflow"]
+}
