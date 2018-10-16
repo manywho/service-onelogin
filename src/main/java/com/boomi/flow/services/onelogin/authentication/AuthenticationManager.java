@@ -10,7 +10,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import lombok.val;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
@@ -54,7 +53,7 @@ public class AuthenticationManager {
         }
 
         // Build up the profile result from the information Okta gives us
-        val result = new AuthenticatedWhoResult();
+        AuthenticatedWhoResult result = new AuthenticatedWhoResult();
         result.setDirectoryId("onelogin");
         result.setDirectoryName("Onelogin");
         result.setEmail(user.getString("email"));

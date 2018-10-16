@@ -22,7 +22,6 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.onelogin.sdk.conn.Client;
-import lombok.experimental.var;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.json.JSONObject;
@@ -85,7 +84,7 @@ public class AuthorizationManager {
 
                 // We need to check if the authenticated user is one of the authorized users by ID
                 if (request.getAuthorization().hasUsers()) {
-                    var isAuthorized = request.getAuthorization().getUsers().stream()
+                    boolean isAuthorized = request.getAuthorization().getUsers().stream()
                             .anyMatch(u -> u.getAuthenticationId().equals(user.getString("sub")));
 
                     if (isAuthorized) {
@@ -107,7 +106,7 @@ public class AuthorizationManager {
 
                     List<Group> authorizedGroups = request.getAuthorization().getGroups();
 
-                    var isAuthorized = Streams.asStream(user.getJSONArray("groups"))
+                    boolean isAuthorized = Streams.asStream(user.getJSONArray("groups"))
                             .anyMatch(group -> authorizedGroups.stream().anyMatch(g -> g.getAuthenticationId().equals(group)));
 
                     if (isAuthorized) {
@@ -130,7 +129,7 @@ public class AuthorizationManager {
 
         OAuth20Service service = OneLoginOpenIdApi20Factory.create(configuration, false);
 
-        var user = new $User();
+        $User user = new $User();
         user.setDirectoryId("Onelogin");
         user.setDirectoryName("Onelogin");
         user.setAuthenticationType(AuthorizationType.Oauth2);
@@ -154,7 +153,7 @@ public class AuthorizationManager {
 
         try {
             // Build the required AuthorizationGroup objects out of the groups that Okta tells us about
-            var roles = Streams.asStream(client.getRoles().iterator())
+            List<AuthorizationGroup> roles = Streams.asStream(client.getRoles().iterator())
                     .map(role -> new AuthorizationGroup(role.getName(), role.getName()))
                     .collect(Collectors.toList());
 
@@ -178,7 +177,7 @@ public class AuthorizationManager {
 
         try {
             // Build the required AuthorizationUser objects out of the users that Okta tells us about
-            var users = Streams.asStream(client.getUsers().iterator())
+            List<AuthorizationUser> users = Streams.asStream(client.getUsers().iterator())
                     .map(user -> new AuthorizationUser(
                             String.valueOf(user.id),
                             String.format("%s %s", user.firstname, user.lastname),
