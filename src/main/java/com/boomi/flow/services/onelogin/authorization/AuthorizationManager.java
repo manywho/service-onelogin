@@ -189,7 +189,7 @@ public class AuthorizationManager {
                     typeBuilder.from(users)
             );
         } catch (URISyntaxException | OAuthProblemException | OAuthSystemException e) {
-            throw new RuntimeException("Cannot get groups from OneLogin", e);
+            throw new RuntimeException("Cannot get users from OneLogin", e);
         }
     }
 }
