@@ -18,6 +18,6 @@ public class Application extends Servlet3Server {
         EmbeddedServer server = new UndertowServer();
         server.addModule(new ApplicationModule());
         server.setApplication(Application.class);
-        server.start("/api/onelogin/1");
+        server.start();
     }
 }

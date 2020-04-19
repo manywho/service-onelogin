@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <version.manywho.sdk>2.0.0</version.manywho.sdk>
         <version.onelogin>1.0.0</version.onelogin>
     </properties>
 
@@ -18,18 +19,24 @@
         <dependency>
             <groupId>com.manywho.sdk</groupId>
             <artifactId>sdk-server-undertow</artifactId>
-            <version>2.0.0-beta-06</version>
+            <version>${version.manywho.sdk}</version>
         </dependency>
         <dependency>
             <groupId>com.manywho.sdk</groupId>
             <artifactId>sdk-server-servlet3</artifactId>
-            <version>2.0.0-beta-06</version>
+            <version>${version.manywho.sdk}</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.3</version>
+        </dependency>
+
         <dependency>
             <groupId>com.mashape.unirest</groupId>
             <artifactId>unirest-java</artifactId>
